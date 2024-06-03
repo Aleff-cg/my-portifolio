@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .forms{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li>{{message}}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% for i in tabela %}
+    <div class="post">
+        <h3>{{i.user}}</h3>
+        <img src="../../media/{{i.imagem}}" alt="">
+        <p>{{i.post}}</p>
+        <p>{{i.data}}</p>
+        <div class="acoes">
+            <a href="/deletar/{{i.id}}">Deletar</a>
+            <a href="/atualizar/{{i.id}}">Atualizar</a>
+        </div>
+    </div>
+    {% endfor %}
+    <a href="{% url 'postar' %}">Postar</a>
+    <a href="{% url 'mudar_imagem' %}">Mudar imagem de perfil</a>
+    <a href="{% url 'sair' %}">Sair</a>
+    {% block content%}
+    {% endblock %}
+    {% block delete %}
+    {% endblock %}
+    {% block atualizar %}
+    {% endblock %}
+    {% block mudar %}
+    {% endblock %}
+   
+</body>
+</html>

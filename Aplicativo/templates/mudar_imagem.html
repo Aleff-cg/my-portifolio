@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+{% block mudar %}
+<div class="forms">
+    <form action="{{mudar_imagem}}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+        <input type="file" name="file" id="file" placeholder="imagem">
+        <label for="per">Deixar sem imagem</label>
+        <input type="checkbox" name="img" id="img" onclick="vai(this)">
+        <input type="submit" value="enviar">
+    </form>
+</div>
+<script>
+function vai(x){
+    if(x.checked == true){
+        document.querySelector("input[name='file']").value = ''
+    }
+   
+}
+setInterval(()=>{
+    let d = document.querySelector("input[name='file']")
+    let i = document.querySelector("input[name='img']")
+    if(i.checked == false && d.value == ''){
+        i.checked = true
+    } else if(i.checked == true && d.value != '') {
+        i.checked = false
+    }
+},500)
+</script>
+{% endblock %}

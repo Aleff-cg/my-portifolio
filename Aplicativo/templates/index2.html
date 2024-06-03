@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li>{{message}}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <div class="posts">
+    {% for i in tabela %}
+        <div class="post">
+            <div class="primeira">
+                <img src="../../media/{{i.imagem}}" alt="">
+                <h3>{{i.user}}</h3>
+            </div>
+            <div class="segunda">
+                <p>{{i.post}}</p>
+               
+                <p>{{i.data}}</p>
+                
+                
+            </div>  
+            <div class="acoes">
+                <a href="/deletar/{{i.id}}">Deletar</a>
+                <a href="/atualizar/{{i.id}}">Atualizar</a>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+    <div class="menu">
+        <a href="{% url 'postar' %}">Postar</a>
+        <a href="{% url 'mudar_imagem' %}">Mudar imagem de perfil</a>
+        <a href="{% url 'sair' %}">Sair</a>
+    </div>
+    {% block content%}
+    {% endblock %}
+    {% block delete %}
+    {% endblock %}
+    {% block atualizar %}
+    {% endblock %}
+    {% block mudar %}
+    {% endblock %}
+    <!-- <div class="posts">
+        <div class="post">
+            <div class="primeira">
+                <img src="../../media/{{i.imagem}}" alt="">
+                <h3>{{i.user}}</h3>
+            </div>
+            <div class="segunda">
+                <p>{{i.post}}</p>
+               
+                <p>{{i.data}}</p>
+                
+                
+            </div>  
+            <div class="acoes">
+                <a href="/deletar/{{i.id}}">Deletar</a>
+                <a href="/atualizar/{{i.id}}">Atualizar</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="menu">
+        <a href="{% url 'postar' %}">Postar</a>
+        <a href="{% url 'mudar_imagem' %}">Mudar imagem de perfil</a>
+        <a href="{% url 'sair' %}">Sair</a>
+    </div> -->
+   
+</body>
+</html>
